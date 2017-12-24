@@ -15,14 +15,15 @@ exports.pdfMaker =  functions.https.onRequest( (request, response) => {
   puppeteer.launch()
     .then(browser =>{ browser.newPage()})
     .then(page => {
-     PDF= page.goto('https://news.ycombinator.com', {waitUntil: 'networkidle2'})
+      PDF= page.goto('https://news.ycombinator.com', {waitUntil: 'networkidle2'})
       .then(page.pdf({path: 'hn.pdf', format: 'A4'}));
-     })
+    })
+    .then(response.send('PDF6 made'))
     .then(browser.close())
     .catch(function(err) {
        respond.send(err);
      })
-     response.send('PDF made');
+     
 })
 
 // exports.helloWorld = functions.https.onRequest((request, response) => {
