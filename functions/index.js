@@ -20,9 +20,9 @@ exports.pdfMaker =  functions.https.onRequest( (request, response) => {
      })
     .then(browser.close())
     .catch(function(err) {
-       console.log('ERR', err);
+       respond.send(err);
      })
-     response.send(PDF);
+     response.send('PDF made');
 })
 
 // exports.helloWorld = functions.https.onRequest((request, response) => {
